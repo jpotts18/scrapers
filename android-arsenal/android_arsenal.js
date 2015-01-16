@@ -70,10 +70,6 @@ var scrapeAndLoad = function(url, parseItem){
   });
 };
 
-sequelize.sync().then(function(){
-  timedScraping();
-});
-
 var timedScraping = function(){
   var i = 0;
   var interval = setInterval(function(){
@@ -88,4 +84,8 @@ var timedScraping = function(){
     }
   }, WAIT);
 };
+
+sequelize.sync().then(function(){
+  timedScraping();
+});
 
