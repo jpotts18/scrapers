@@ -122,44 +122,48 @@ var kslCategory = function(catId) {
 
 };
 
-var kslAdvertisment = function(url){
-  request(url, function(err, response, body){
+var kslAdvertisment = function(){
+  request(adUrl, function(err, response, body){
     if (err) throw err;
-
-    saveFile(body, AD_PREFIX);
 
     var $ = cheerio.load(body);
 
-    var labels = {};
+    var adExtraction = {};
 
     $('.productMoreInfoLabel').each(function(){
       var key = $(this).text().split(':').join('');
-      labels[key] = $(this).next().text().trim();
+      if (key === 'Ad Number'){
+        adExtraction.adNumber = parseInt($(this).next().text());
+      } else if (key === 'Post Date') {
+        adExtraction.postDate = $(this).next().text();
+      } else if (key === 'Days Online') {
+        adExtraction.daysOnline = $(this).next().text();
+      } else if (key === 'Listing Type') {
+        adExtraction.listingType = $(this).next().text();
+      } else if (key === 'Page Views') {
+        adExtraction.pageViews = parseInt($(this).next().text());
+      } else if (key === 'Sellers Account') {
+        adExtraction.sellersAccount = $(this).next().text();
+      }
     });
-
-    console.log(labels);
 
     $('span.productPriceCents').remove(); // who cares about cents?
 
-    var price = $('.productPriceBox').text().trim();
-    var content = $('.productContentText').text().trim();
-    var contact = $('.productContactName').text().trim();
+    adExtraction.price = $('.productPriceBox').text().trim();
+    adExtraction.content = $('.productContentText').text().trim();
+    adExtraction.contact = $('.productContactName').text().trim();
     
-    var phoneLabel = $('span.productContactPhoneLabel').text().trim();
+    adExtraction.phoneLabel = $('span.productContactPhoneLabel').text().trim();
     $('span.productContactPhoneLabel').remove();
-    var phone = $('.productContactPhone').text().trim();
+    adExtraction.phone = $('.productContactPhone').text().trim();
 
-    console.log(price);
-    console.log(content);
-    console.log(contact);
-    console.log(phoneLabel);
-    console.log(phone);
+    
 
   })
-}
+};
 
 
-kslOverview();
+// kslOverview();
 // kslCategory();
 // kslCategoryCrawler();
-// kslAdvertisment();
+kslAdvertisment();
