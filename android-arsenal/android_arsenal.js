@@ -12,10 +12,15 @@ var sequelize = new Sequelize('', '', '', {
     logging: null
   });
 
+// Stars + forks + last_update
+// last_update creation_date = Old library with recent changes 
+// 
+// Issues compared to issue closed
+// size
+
 // Model definition
 
 var Library = sequelize.define('library', {
-  url: Sequelize.STRING,
   name: Sequelize.STRING,
   tag: Sequelize.STRING,
   license: Sequelize.STRING,

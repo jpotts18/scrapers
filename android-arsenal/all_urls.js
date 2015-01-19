@@ -1,3 +1,5 @@
+// these links were gathered using the google chrome scraper plugin from the https://android-arsenal.com/free web page. 
+
 module.exports =[
 	"/details/1/1",
 	"/details/1/2",
