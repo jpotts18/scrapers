@@ -6,9 +6,8 @@ var Sequelize = require('sequelize');
 // personal modules
 var urls = require('./all_urls');
 
-var sequelize = new Sequelize('', '', '', {
-  	dialect: 'sqlite',
-  	storage: 'db.sqlite',
+var sequelize = new Sequelize('android_arsenal', 'root', 'root', {
+  	dialect: 'mysql',
     logging: null
   });
 
