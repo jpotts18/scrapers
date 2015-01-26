@@ -57,9 +57,16 @@ var parseItem = function($){
     $('span.productPriceCents').remove(); // who cares about cents?
     $('span.productPriceSub').remove(); // OBO's will mess this up
 
-    instance.price = $('.productPriceBox').text().trim().replace("$","");
-    instance.content = $('.productContentText').text().trim();
-    instance.title = $('.productContentTitle').text().trim();
+    var price = $('.productPriceBox').text().trim().replace("$","").replace(',','');
+    if (price === "") {
+      // if it is sold then the price box is hidden
+      instance.price = 0;
+    } else {
+      instance.price = price;
+    }
+
+    instance.content = $('.productContentText').text().trim().replace(/[^a-zA-Z0-9 ]/g, "")
+    instance.title = $('.productContentTitle').text().trim().replace(/[^a-zA-Z0-9 ]/g, "")
     instance.pictureCount = $('.productImageEnlarge').length + $('.productImageSmall').length;
     instance.contact = $('.productContactName').text().trim();
     
