@@ -3,13 +3,10 @@ var request = require('request');
 var cheerio = require('cheerio');
 var Sequelize = require('sequelize');
 
-// var WAIT = 15 * 60 * 1000; // 15 minutes
-// var WAIT = 1 * 60 * 1000; // 1 minute
-
 var DOMAIN = 'http://www.ksl.com';
 var URL = DOMAIN + '/?nid=47';
 var LINK_REGEX = /^\?nid=(.*?)&cat=(.*?)&category=(.*?)$/;
-var LOAD_SUB_CATEGORY = true;
+var LOAD_SUB_CATEGORY = false;
 
 var sequelize = new Sequelize('ksl', 'root', 'root', {
   	dialect: 'mysql',

@@ -27,14 +27,6 @@ var AdExtraction = sequelize.define('ad_extraction', {
 	phone: Sequelize.STRING
 })
 
-var Advertisment = sequelize.define('advertisment', {
-	price: Sequelize.INTEGER,
-	content: Sequelize.TEXT,
-	contact: Sequelize.STRING,
-	phoneLabel: Sequelize.STRING,
-	phone: Sequelize.STRING
-});
-
 // var WAIT = 15 * 60 * 1000; // 15 minutes
 // var WAIT = 1 * 60 * 1000; // 1 minute
 var WAIT = 5 * 1000; // 15 seconds
