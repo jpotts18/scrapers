@@ -2,32 +2,11 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var Sequelize = require('sequelize');
+var models = require('../models');
+var AdExtraction = models.ad_extraction;
 
 // personal modules
 var urls = require('./ad_urls');
-
-var sequelize = new Sequelize('ksl', 'root', 'root', {
-  	dialect: 'mysql',
-    logging: false
-  });
-
-// Model definition
-
-var AdExtraction = sequelize.define('ad_extraction', {
-  title: Sequelize.STRING,
-  adNumber: Sequelize.INTEGER,
-  postDate: Sequelize.STRING,
-  daysOnline: Sequelize.STRING,
-  listingType: Sequelize.STRING,
-  pageViews: Sequelize.INTEGER,
-  sellersAccount: Sequelize.STRING,
-  price: Sequelize.INTEGER,
-  pictureCount: Sequelize.INTEGER,
-  content: Sequelize.TEXT,
-  contact: Sequelize.STRING,
-  phoneLabel: Sequelize.STRING,
-  phone: Sequelize.STRING
-})
 
 var WAIT = 2 * 1000; // 1 seconds
 var DOMAIN = 'http://www.ksl.com/?nid=218&ad=';

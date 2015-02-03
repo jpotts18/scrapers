@@ -1,0 +1,9 @@
+{
+	"development":{
+		"database":"ksl",
+		"username":"root",
+		"password":"root",
+		"dialect": "mysql",
+    	"logging": false
+	}
+}
