@@ -3,7 +3,9 @@
 		"database":"ksl",
 		"username":"root",
 		"password":"root",
-		"dialect": "mysql",
-    	"logging": false
+		"sequelizeConfig": {
+			"dialect": "mysql",
+    		"logging": false	
+		}	
 	}
 }

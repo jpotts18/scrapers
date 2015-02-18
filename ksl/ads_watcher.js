@@ -1,8 +1,7 @@
 // external modules
 var request = require('request');
 var cheerio = require('cheerio');
-var Sequelize = require('sequelize');
-var models = require('../models');
+var models = require('./models');
 var AdExtraction = models.ad_extraction;
 
 // personal modules
@@ -83,7 +82,5 @@ var timedScraping = function(){
   }, WAIT);
 };
 
-sequelize.sync().then(function(){
-  timedScraping();
-});
+timedScraping();
 

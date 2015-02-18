@@ -5,7 +5,8 @@ var path      = require("path");
 var Sequelize = require("sequelize");
 var env       = process.env.NODE_ENV || "development";
 var config    = require(__dirname + '/../config.json')[env];
-var sequelize = new Sequelize(config.database, config.username, config.password, config);
+console.log(config)
+  var sequelize = new Sequelize(config.database, config.username, config.password, config.sequelizeConfig);
 var db        = {};
 
 fs
@@ -23,6 +24,13 @@ Object.keys(db).forEach(function(modelName) {
     db[modelName].associate(db);
   }
 });
+
+//
+
+sequelize.sync().then(function(){
+  console.log('Sequelize Upgrading DB:   ')
+});
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
